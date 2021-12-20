@@ -5,13 +5,16 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "db:reset": "node bin/resetdb.js",
+    "local": "nodemon -L"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^10.0.0",
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "pg": "^8.7.1",
+    "pg-native": "^3.0.0"
   }
 }

@@ -1,9 +1,21 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3001;
+const http = require('http');
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+const router = require('./routes/routes.js');
+const server = http.createServer(app);
 
-app.get('/api', (req, res) => {
-  res.send({ express: 'Server connected to react' });
+const PORT = process.env.PORT || 3001;
+
+app.use('/', router);
+
+server.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`)
 });
+
+// app.listen(port, () => console.log(`Listening on port ${port}`));
+
+// app.get('/api', (req, res) => {
+  // res.send({ express: 'Server connected to react' });
+// });
