@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "db:reset": "node bin/resetdb.js",
-    "local": "nodemon -L"
+    "start": "nodemon server.js",
+    "db:reset": "node bin/resetdb.js"
   },
   "keywords": [],
   "author": "",

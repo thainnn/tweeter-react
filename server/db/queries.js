@@ -4,12 +4,30 @@ const getAllUsers = () => {
   return db.query(`SELECT * FROM users;`);
 };
 
+const getAllTweets = () => {
+  return db.query(`SELECT * FROM tweets;`)
+};
+
 const addUser = (user) => {
   return db
     .query(
-      `INSERT INTO users(name, email, password, is_admin)
-                    VALUES($1,$2,$3,$4) RETURNING *;`,
-      [`${user.name}`, `${user.email}`, `${user.password}`, `${user.is_admin}`]
+      `INSERT INTO users(name, handle, avatar, email, password, is_admin)
+                    VALUES($1,$2,$3,$4,$5,$6) RETURNING *;`,
+      [`${user.name}`, `${user.handle}`, `${user.avatar}`, `${user.email}`, `${user.password}`, `${user.is_admin}`]
+    )
+    .then((response) => {
+      if (response.rows.length) {
+        return response.rows[0];
+      }
+    });
+};
+
+const addTweet = (tweet) => {
+  return db
+    .query(
+      `INSERT INTO tweets(content, user_id)
+                    VALUES($1,$2) RETURNING *;`,
+      [`${tweet.content}`, `${tweet.user_id}`]
     )
     .then((response) => {
       if (response.rows.length) {
@@ -28,7 +46,9 @@ const getUserById = (id) => {
 
 module.exports = {
   addUser,
+  addTweet,
   getUserByEmail,
   getUserById,
   getAllUsers,
+  getAllTweets
 };

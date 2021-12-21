@@ -4,7 +4,7 @@ const userQueries = require("../db/queries");
 
 // GET /api/users/
 // tester
-router.get("/", function (req, res) {
+router.get("/users", function (req, res) {
   userQueries
     .getAllUsers()
     .then((response) => {
@@ -15,9 +15,21 @@ router.get("/", function (req, res) {
     .catch((err) => {
       res.status(500).json({ error: err.message });
     });
-
-  // res.send("respond with a resource");
 });
+
+router.get("/tweets", function (req, res) {
+  userQueries
+    .getAllTweets()
+    .then((response) => {
+      console.log(response);
+      const tweets = response.rows;
+      res.json({ tweets });
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
 
 //route to get user login info
 router.post("/login", (req, res) => {
