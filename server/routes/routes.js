@@ -8,9 +8,7 @@ router.get("/users", function (req, res) {
   userQueries
     .getAllUsers()
     .then((response) => {
-      console.log(response);
-      const users = response.rows;
-      res.json({ users });
+      res.json(response.rows);
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });
