@@ -18,7 +18,12 @@ export default function TweetForm(props) {
     }).catch(err => {
       console.log('can not tweet with error: ',err.response.data);
     });
+    reset();
   });
+
+  const reset = () => {
+    setContent('');
+  };
 
   return (
     <section className="newtweet">

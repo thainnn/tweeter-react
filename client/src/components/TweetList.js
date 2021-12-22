@@ -3,8 +3,6 @@ import Tweet from "./Tweet";
 export default function TweetList(props) {
   const { tweets, users } = props;
 
-  console.log('tweets: ', tweets, 'user: ', users);
-
   const reverseTweets = tweets.map((element, index, array) => array[array.length - 1 - index]);
   
   const tweetList = reverseTweets.map((tweet) => {
